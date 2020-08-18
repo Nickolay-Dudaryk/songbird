@@ -1,0 +1,6 @@
+.random-bird__container {
+    margin: 0 auto;
+    max-width: 1030px;
+    width: 100%;
+    background-color: rgb(48,48,48);
+}

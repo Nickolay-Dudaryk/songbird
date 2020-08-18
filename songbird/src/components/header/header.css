@@ -1,0 +1,30 @@
+.header {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.header__logo__score {
+    display: flex;
+    justify-content: space-between;
+}
+
+.header__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+  
+.header__item {
+    padding: 10px;
+    background-color: rgb(0,137,102);
+}
+
+.header__item:first-child {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.header__item:last-child {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
