@@ -1,51 +1,156 @@
-import React from "react";
+import React, { Component } from "react";
 
 import Header from "./components/header/header";
 import RandomBird from "./components/random-bird/random-bird";
-import ItemList from "./components/item-list/item-list";
-import BirdDetails from "./components/bird-details/bird-details";
-import Footer from "./components/footer/footer";
+import FooterBtn from "./components/footer/footer-btn";
+import birdsData from "./birds-data";
+import BirdGuessingBlock from "./components/bird-guessing-block/bird-guessing-block";
+
+import wrong from "./assets/audio/wrong.mp3";
+
 import "./App.css";
 
+export default class App extends Component {
+  state = {
+    score: 0,
+    scoreLeftInCurrientAttempt: 5,
+    currentIndexOfBirdsData: 0,
+    currentBirdId: null,
+    itemList: null,
+    isAnswerCorrect: false,
+  };
 
-// const birdName = "Pica pica";
+  menuItems = [
+    "Разминка",
+    "Воробьиные",
+    "Лесные птицы",
+    "Певчие птицы",
+    "Хищные птицы",
+    "Морские птицы",
+  ];
 
-// const getBirdSound = async (url) => {
-//   const res = await fetch(url);
+  componentDidMount() {
+    this.createItemList();
+  }
 
-//   if(!res.ok) {
-//     throw new Error(`Could not fetch ${url}, recieved ${res.status}`)
-//   }
+  componentDidUpdate(prevProps, prevState) {
+    if (
+      prevState.currentIndexOfBirdsData === 6 &&
+      this.state.currentIndexOfBirdsData === 0
+    ) {
+      this.createItemList();
+    }
+  }
 
-//   const data = res.json();
-//   return data;
-// };
+  createItemList = () => {
+    const { currentIndexOfBirdsData } = this.state;
+    const itemList = birdsData[currentIndexOfBirdsData];
+    const randomBirdId = Math.floor(Math.random() * 6) + 1;
 
-// getBirdSound(`/api/2/recordings?query=${birdName}`)
-//   .then((data) => console.log(data))
-//   .catch((err) => console.error(err))
+    this.setState({
+      itemList,
+      randomBirdId,
+      isAnswerCorrect: false,
+      currentBirdId: null,
+    });
+  };
 
-// get random number from 1 to 6
-// const randomId = Math.floor(Math.random() * 6) + 1;
+  onBirdSelected = (currentBirdId, e) => {
+    const {
+      randomBirdId,
+      score,
+      scoreLeftInCurrientAttempt,
+      isAnswerCorrect,
+    } = this.state;
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <Header />
-      </header>
-      <main className="App-main">
-        <RandomBird />
-        <div className="d-flex justify-content-between w-100 mb-3 mt-3" style={{ maxWidth: 1030 }}>
-          <ItemList />
-          <BirdDetails/>
-        </div>
-      </main>
-      <footer className="App-footer">
-        <Footer />
-      </footer>
-    </div>
-  );
+    if (!isAnswerCorrect) {
+      if (currentBirdId === randomBirdId) {
+        if (!e.target.classList.contains("correct")) {
+          e.target.classList.add("correct");
+
+          this.setState({
+            isAnswerCorrect: true,
+            score: score + scoreLeftInCurrientAttempt,
+          });
+        }
+      } else if (!e.target.classList.contains("wrong")) {
+        e.target.classList.add("wrong");
+
+        const audio = new Audio(wrong);
+        audio.play();
+
+        this.setState({
+          scoreLeftInCurrientAttempt: scoreLeftInCurrientAttempt - 1,
+        });
+      }
+    }
+    this.setState({ currentBirdId });
+  };
+
+  changeLevel = () => {
+    if (this.state.currentIndexOfBirdsData !== this.menuItems.length - 1) {
+      this.setState({
+        currentIndexOfBirdsData: (this.state.currentIndexOfBirdsData += 1),
+        scoreLeftInCurrientAttempt: 5,
+      });
+      this.createItemList();
+    } else {
+      this.setState({
+        currentIndexOfBirdsData: (this.state.currentIndexOfBirdsData += 1),
+      });
+    }
+  };
+
+  restartGame = () => {
+    this.setState({
+      currentIndexOfBirdsData: 0,
+      score: 0,
+      scoreLeftInCurrientAttempt: 5,
+    });
+  };
+
+  render() {
+    const {
+      currentIndexOfBirdsData,
+      isAnswerCorrect,
+      currentBirdId,
+      randomBirdId,
+      itemList,
+      score,
+      scoreLeftInCurrientAttempt,
+    } = this.state;
+
+    if (!itemList) return null;
+
+    return (
+      <div className="App">
+        <header className="App-header">
+          <Header
+            currentNavigationItem={currentIndexOfBirdsData}
+            menuItems={this.menuItems}
+            score={score}
+          />
+        </header>
+        <main className="App-main">
+          <RandomBird
+           audioData={itemList[randomBirdId]}
+           showBirdInfo={isAnswerCorrect}
+          />
+          <div
+            className="d-flex justify-content-between w-100 mb-3 mt-3"
+            style={{ maxWidth: 1030 }}
+          >
+            <BirdGuessingBlock
+              onBirdSelected={this.onBirdSelected}
+              itemList={itemList}
+              currentBirdId={currentBirdId}
+            />
+          </div>
+        </main>
+        <footer className="App-footer">
+          <FooterBtn disabled={isAnswerCorrect} onClick={this.changeLevel} />
+        </footer>
+      </div>
+    );
+  }
 }
-
-export default App;

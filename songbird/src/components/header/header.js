@@ -1,25 +1,31 @@
-import React from 'react';
+import React, { Component } from "react";
 
-import './header.css';
+import "./header.css";
 
-const Header = () => {
+export default class Header extends Component {
+  render() {
+    const { currentNavigationItem, menuItems, score } = this.props;
+
+    const listOfMenuItems = menuItems.map((el, idx) => {
+        return(
+            <li key={idx} className={`list-group-item nav-item ${idx === currentNavigationItem ? 'active' : null}`}> { el } </li>
+        )
+    })
+
     return (
-        <div className="header mt-4">
-            <div className="header__logo__score">
-                <h3 className="header__logo">SongBird</h3>
-                <span className="header__score">Score: 0</span>
-            </div>
+      <div className="header mt-4">
 
-            <div className="header__list mt-3 mb-3">
-                <span className="header__item">Разминка</span>
-                <span className="header__item">Воробьиные</span>
-                <span className="header__item">Лесные птицы</span>
-                <span className="header__item">Певчие птицы</span>
-                <span className="header__item">Хищные птицы</span>
-                <span className="header__item">Морские птицы</span>
-            </div>
+        <div className="header__logo__score">
+          <h3 className="header__logo">SongBird</h3>
+          <span className="header__score">Score: { score }</span>
         </div>
-    )
-}
 
-export default Header;
+        <div className="header__list mt-3 mb-3">
+            <ul className="list-group list-group-horizontal d-flex flex-wrap flex-lg-nowrap">
+                { listOfMenuItems }
+            </ul>
+        </div>
+      </div>
+    );
+  }
+}
