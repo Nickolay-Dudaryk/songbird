@@ -5,6 +5,7 @@ import RandomBird from "./components/random-bird/random-bird";
 import FooterBtn from "./components/footer/footer-btn";
 import birdsData from "./birds-data";
 import BirdGuessingBlock from "./components/bird-guessing-block/bird-guessing-block";
+import EndGameComponent from "./components/end-game-component/end-game-component";
 
 import wrong from "./assets/audio/wrong.mp3";
 
@@ -124,32 +125,36 @@ export default class App extends Component {
 
     return (
       <div className="App">
-        <header className="App-header">
-          <Header
-            currentNavigationItem={currentIndexOfBirdsData}
-            menuItems={this.menuItems}
-            score={score}
-          />
-        </header>
-        <main className="App-main">
-          <RandomBird
-           audioData={itemList[randomBirdId]}
-           showBirdInfo={isAnswerCorrect}
-          />
-          <div
-            className="d-flex justify-content-between w-100 mb-3 mt-3"
-            style={{ maxWidth: 1030 }}
-          >
-            <BirdGuessingBlock
-              onBirdSelected={this.onBirdSelected}
-              itemList={itemList}
-              currentBirdId={currentBirdId}
-            />
+        {currentIndexOfBirdsData === this.menuItems.length ? (
+          <EndGameComponent score={score} onClick={this.restartGame} />
+        ) : (
+          <div className="App">
+            <header className="App-header">
+              <Header
+                currentNavigationItem={currentIndexOfBirdsData}
+                menuItems={this.menuItems}
+                score={score}
+              />
+            </header>
+            <main className="App-main">
+              <RandomBird
+                audioData={itemList[randomBirdId]}
+                showBirdInfo={isAnswerCorrect}
+              />
+              <BirdGuessingBlock
+                onBirdSelected={this.onBirdSelected}
+                itemList={itemList}
+                currentBirdId={currentBirdId}
+              />
+            </main>
+            <footer className="App-footer">
+              <FooterBtn
+                disabled={isAnswerCorrect}
+                onClick={this.changeLevel}
+              />
+            </footer>
           </div>
-        </main>
-        <footer className="App-footer">
-          <FooterBtn disabled={isAnswerCorrect} onClick={this.changeLevel} />
-        </footer>
+        )}
       </div>
     );
   }
