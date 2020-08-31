@@ -1,6 +1,5 @@
 .random-bird__container {
   margin: 0 auto;
-  max-width: 1380px;
   width: 100%;
   background-color: rgb(48, 48, 48);
 }
@@ -12,5 +11,6 @@
 }
 
 .react-audio-player {
-    width: 95%;
+  width: 95%;
+  margin-bottom: 10px;
 }

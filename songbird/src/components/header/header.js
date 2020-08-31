@@ -8,12 +8,12 @@ export default class Header extends Component {
 
     const listOfMenuItems = menuItems.map((el, idx) => {
         return(
-            <li key={idx} className={`list-group-item nav-item ${idx === currentNavigationItem ? 'active' : null}`}> { el } </li>
+            <li key={idx} className={`list-group-item w-100 nav-item ${idx === currentNavigationItem ? 'active-group' : null}`}> { el } </li>
         )
     })
 
     return (
-      <div className="header mt-4">
+      <div className="header mt-4 w-100">
 
         <div className="header__logo__score">
           <h3 className="header__logo">SongBird</h3>

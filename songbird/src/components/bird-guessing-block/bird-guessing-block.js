@@ -21,7 +21,7 @@ export default class BirdGuessingBlock extends Component {
     );
 
     return (
-      <div className="container">
+      <div className="bird-guessing-block-container">
         <div className="list-group">
           {itemList.map((item, idx) => {
             return (
