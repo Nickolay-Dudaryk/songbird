@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import './item.css'
+
 export default class Item extends Component {
     render() {
         const { name, onBirdSelected, currentBirdId} = this.props;

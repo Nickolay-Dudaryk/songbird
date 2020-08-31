@@ -1,12 +1,59 @@
-.bird__guessing__block {
+.container {
   display: flex;
-  width: 100%;
   justify-content: space-between;
+  max-width: 1380px;
+  width: 100%;
+  margin: 20px;
+}
+
+.image-name-audio-block {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-left: 10px;
+}
+
+.birds-details-block {
+  background-color: rgb(48, 48, 48);
+}
+
+.bird-image {
+  height: 200px;
+  width: 200px;
+  border-radius: 5px;
+  margin: 10px;
+}
+
+.name-audio {
+  width: 100%;
+  margin-right: 10px;
+}
+
+.bird-name {
+  text-align: left;
+  margin-top: 10px;
+}
+
+.bird-species {
+  text-align: left;
+}
+
+.description {
+  margin: 10px;
+  text-align: justify;
+}
+
+.dummy-block {
+  width: 100%;
+  background-color: rgb(48, 48, 48);
+  margin-left: 10px;
 }
 
 .list-group {
   width: 100%;
   text-align: left;
+  background-color: rgb(48, 48, 48);
+  margin-right: 10px;
 }
 
 .btn-circle {
@@ -24,8 +71,3 @@
   background-color: rgb(48, 48, 48);
 }
 
-.birds-details__container {
-  width: 100%;
-  margin-left: 20px;
-  background-color: rgb(48, 48, 48);
-}
