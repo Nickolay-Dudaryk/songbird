@@ -9,7 +9,7 @@ import "./random-bird.css";
 export default class RandomBird extends Component {
   render() {
     const {
-      audioData: { name, image, audio },
+      audioData: { name, image, audio }, 
       showBirdInfo,
     } = this.props;
 

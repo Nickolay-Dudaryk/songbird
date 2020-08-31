@@ -46,7 +46,7 @@ export default class App extends Component {
   createItemList = () => {
     const { currentIndexOfBirdsData } = this.state;
     const itemList = birdsData[currentIndexOfBirdsData];
-    const randomBirdId = Math.floor(Math.random() * 6) + 1;
+    const randomBirdId = Math.floor(Math.random() * Math.floor(5));
 
     this.setState({
       itemList,
