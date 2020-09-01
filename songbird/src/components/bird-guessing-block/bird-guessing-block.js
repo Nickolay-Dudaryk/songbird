@@ -14,15 +14,15 @@ export default class BirdGuessingBlock extends Component {
     } = this.props;
 
     const dummy_block = (
-      <div className="dummy-block">
+      <div className="dummy-block mb-3 mt-3 col-12 col-lg-6">
         <p>Послушайте плеер.</p>
         <p>Выберите птицу из списка</p>
       </div>
     );
 
     return (
-      <div className="bird-guessing-block-container">
-        <div className="list-group">
+      <div className="bird-guessing-block-container d-flex mb-2 flex-column col-12 flex-lg-row">
+        <div className="list-group col-12 col-sm-12 col-lg-6 mr-1 mb-3 mt-3">
           {itemList.map((item, idx) => {
             return (
               <Item
@@ -35,7 +35,7 @@ export default class BirdGuessingBlock extends Component {
           })}
         </div>
         {currentBirdId != null ? (
-          <div className="birds-details-block">
+          <div className="birds-details-block mb-3 mt-3 col-12 col-lg-6">
             <div className="image-name-audio-block">
               <div className="image-block">
                 <img
