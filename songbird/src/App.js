@@ -124,7 +124,7 @@ export default class App extends Component {
     if (!itemList) return null;
 
     return (
-      <div className="App">
+      <div className="App container">
         {currentIndexOfBirdsData === this.menuItems.length ? (
           <EndGameComponent score={score} onClick={this.restartGame} />
         ) : (

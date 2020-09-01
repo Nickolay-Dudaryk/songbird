@@ -13,6 +13,8 @@ export default class RandomBird extends Component {
       showBirdInfo,
     } = this.props;
 
+    console.log(name)
+
     return (
       <div className="d-flex justify-content-between mt-2 random-bird__container">
         <div className="random-bird__image m-2">
