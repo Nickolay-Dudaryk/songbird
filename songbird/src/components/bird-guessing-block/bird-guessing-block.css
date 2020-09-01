@@ -16,7 +16,8 @@
 
 .birds-details-block {
   background-color: rgb(48, 48, 48);
-  width: 100%;
+  /* width: 100%; */
+  flex-basis: 100%;
 }
 
 .bird-image {

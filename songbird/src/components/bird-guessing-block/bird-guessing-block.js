@@ -29,7 +29,7 @@ export default class BirdGuessingBlock extends Component {
                 name={item.name}
                 onBirdSelected={onBirdSelected}
                 currentBirdId={idx}
-                key={item.id}
+                key={item.name}
               />
             );
           })}
