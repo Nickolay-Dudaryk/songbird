@@ -1,12 +1,14 @@
-.header__logo__score {
+.header__container {
+    width: 100%;
+    height: auto;
+    color: white;
+}
+
+.header {
     display: flex;
     justify-content: space-between;
 }
 
-.nav-item {
-    text-align: center;
-}
-
-.active-group {
-    background-color: rgb(0,188,140);
+.header__score {
+    align-self: center;
 }
