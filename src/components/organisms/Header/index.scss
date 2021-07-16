@@ -1,0 +1,14 @@
+.header__container {
+  width: 100%;
+  height: auto;
+  color: white;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.header__score {
+  align-self: center;
+}
