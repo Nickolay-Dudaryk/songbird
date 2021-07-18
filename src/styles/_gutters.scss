@@ -1,4 +1,6 @@
-/* You don't need to change anything below */
+@import 'bootstrap';
+@import '../../node_modules/bootstrap/scss/bootstrap-grid';
+
 @each $grid-breakpoint, $grid-gutter-width in $grid-gutter-widths {
   @include media-breakpoint-up($grid-breakpoint) {
     $grid-gutter-half-width: $grid-gutter-width / 2;
@@ -6,8 +8,8 @@
 
     .container {
       @if $grid-breakpoint == xs {
-        padding-right: $grid-gutter-width;
-        padding-left: $grid-gutter-width;
+        padding-right: $grid-gutter-twixe-width;
+        padding-left: $grid-gutter-twixe-width;
       } @else {
         padding-right: $grid-gutter-half-width;
         padding-left: $grid-gutter-half-width;
@@ -20,7 +22,7 @@
     }
 
     .col,
-    [class^="col-"] {
+    [class^='col-'] {
       padding-right: $grid-gutter-half-width;
       padding-left: $grid-gutter-half-width;
     }

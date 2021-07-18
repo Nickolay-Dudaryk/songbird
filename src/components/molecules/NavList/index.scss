@@ -1,23 +1,22 @@
+@import "../../../styles/color";
+@import "../../../styles/mixins";
+
 .nav-list {
   width: 100%;
   height: auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: white;
-}
+  @include flex(row, space-between, center);
+  color: $white;
 
-.nav-item {
-  list-style: none;
-  width: 100%;
-  padding: 10px;
-  align-self: center;
-  font-size: 1.1em;
-  text-align: center;
-  border: 1px solid gray;
-  background-color: rgb(48, 48, 48);
-}
+  &__item {
+    width: 100%;
+    padding: 20px 30px;
+    font-size: 1.5rem;
+    text-align: center;
+    border: 1px solid gray;
+    background-color: $dark-gray;
 
-.active-group {
-  background-color: rgb(0, 188, 140);
+    &_active {
+      background-color: $green;
+    }
+  }
 }

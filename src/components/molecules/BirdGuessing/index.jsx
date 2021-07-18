@@ -5,7 +5,7 @@ import BirdDescriptionBlock from '../BirdDescription'
 
 import "./index.scss";
 
-const BirdGuessingBlock = ({onBirdSelected, itemList, currentBirdId}) => {
+const BirdGuessing = ({onBirdSelected, itemList, currentBirdId}) => {
   const dummy_block = (
     <div className="dummy-block">
       <p>Послушайте плеер.</p>
@@ -27,4 +27,4 @@ const BirdGuessingBlock = ({onBirdSelected, itemList, currentBirdId}) => {
     </div>
   )
 }
-export default BirdGuessingBlock;
+export default BirdGuessing;

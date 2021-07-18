@@ -3,23 +3,23 @@ import React, {useState, useEffect} from 'react';
 import Header from "./components/organisms/Header";
 import RandomBird from "./components/molecules/RandomBird";
 import Footer from "./components/organisms/Footer";
-import BirdGuessingBlock from "./components/molecules/BirdGuessing";
+import BirdGuessing from "./components/molecules/BirdGuessing";
 import EndGameComponent from "./components/molecules/EndGameCongrats";
 
 import birdsData from "./birds-data";
 
 import wrong from "./assets/audio/wrong.mp3";
 
-import "./App.css";
+import "./App.scss";
 
 const App = () => {
   let [score, setScore] = useState(0);
   let [scoreLeftInCurrentAttempt, setScoreLeftInCurrentAttempt] = useState(5);
   let [currentIndexOfBirdsData, setCurrentIndexOfBirdsData] = useState(0);
-  let [currentBirdId, setCurrentBirdId] = useState(null);
-  let [itemList, setItemList] = useState(null);
-  let [isAnswerCorrect, setIsAnswerCorrect] = useState(false);
-  let [randomBirdId, setRandomBirdId] = useState(null);
+  const [currentBirdId, setCurrentBirdId] = useState(null);
+  const [itemList, setItemList] = useState(null);
+  const [isAnswerCorrect, setIsAnswerCorrect] = useState(false);
+  const [randomBirdId, setRandomBirdId] = useState(null);
 
   const menuItems = [
     "Разминка",
@@ -37,10 +37,10 @@ const App = () => {
   }, []);
 
   const createItemList = () => {
-    setRandomBirdId(randomBirdId = Math.floor(Math.random() * 5));
-    setItemList(itemList = birdsData[currentIndexOfBirdsData]);
-    setIsAnswerCorrect(isAnswerCorrect = false);
-    setCurrentBirdId(currentBirdId = null);
+    setRandomBirdId(Math.floor(Math.random() * 5));
+    setItemList(birdsData[currentIndexOfBirdsData]);
+    setIsAnswerCorrect(false);
+    setCurrentBirdId(null);
   };
 
   const onBirdSelected = (currentBirdId, e) => {
@@ -48,7 +48,7 @@ const App = () => {
       if (currentBirdId === randomBirdId) {
         if (!e.target.classList.contains("correct")) {
           e.target.classList.add("correct");
-          setIsAnswerCorrect(isAnswerCorrect = true)
+          setIsAnswerCorrect(true)
           setScore(score += scoreLeftInCurrentAttempt)
         }
       } else if (!e.target.classList.contains("wrong")) {
@@ -64,7 +64,7 @@ const App = () => {
   const changeLevel = () => {
     if (currentIndexOfBirdsData !== menuItems.length - 1) {
       setCurrentIndexOfBirdsData(currentIndexOfBirdsData += 1);
-      setScoreLeftInCurrentAttempt(scoreLeftInCurrentAttempt = 5);
+      setScoreLeftInCurrentAttempt(5);
       createItemList();
     } else {
       setCurrentIndexOfBirdsData(currentIndexOfBirdsData += 1);
@@ -72,33 +72,31 @@ const App = () => {
   };
 
   const restartGame = () => {
-    setCurrentIndexOfBirdsData(currentIndexOfBirdsData = 0);
-    setScore(score = 0);
-    setScoreLeftInCurrentAttempt(scoreLeftInCurrentAttempt = 5);
-    setIsAnswerCorrect(isAnswerCorrect = false);
+    setCurrentIndexOfBirdsData(0);
+    setScore(0);
+    setScoreLeftInCurrentAttempt(5);
+    setIsAnswerCorrect(false);
   };
 
   if (!itemList) return null;
 
   return (
-    <div className="App-container">
+    <div className="App">
       {currentIndexOfBirdsData === menuItems.length ? (
         <EndGameComponent score={score} onClick={restartGame}/>
       ) : (
-        <div className="App">
+        <div>
           <header className="App-header">
-            <Header
-              currentNavigationItem={currentIndexOfBirdsData}
-              menuItems={menuItems}
-              score={score}
-            />
+            <Header currentNavigationItem={currentIndexOfBirdsData}
+                    menuItems={menuItems}
+                    score={score}/>
           </header>
           <main className="App-main">
             <RandomBird
               audioData={itemList[randomBirdId]}
               showBirdInfo={isAnswerCorrect}
             />
-            <BirdGuessingBlock
+            <BirdGuessing
               onBirdSelected={onBirdSelected}
               itemList={itemList}
               currentBirdId={currentBirdId}
@@ -106,8 +104,8 @@ const App = () => {
           </main>
           <footer className="App-footer">
             <Footer
-              disabled={ isAnswerCorrect }
-              onClick={ changeLevel }
+              disabled={isAnswerCorrect}
+              onClick={changeLevel}
             />
           </footer>
         </div>

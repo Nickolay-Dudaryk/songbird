@@ -1,0 +1,19 @@
+@import 'color';
+//@import 'bootstrap';
+//@import '../../node_modules/bootstrap/scss/bootstrap-grid';
+@import "gutters";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: $bg;
+  min-height: 100vh;
+}
+
+li {
+  list-style: none;
+}

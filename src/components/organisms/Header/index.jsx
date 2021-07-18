@@ -1,19 +1,25 @@
 import React from 'react';
-
-import Index from '../../molecules/NavList';
-
+import NavList from '../../molecules/NavList';
 import "./index.scss";
 
 const Header = ({currentNavigationItem, menuItems, score}) => {
   return (
-    <div className="header__container">
-      <div className="header">
-        <h1 className="header__logo">SongBird</h1>
-        <span className="header__score">Score: {score}</span>
-      </div>
+    <header className="header">
+      <div className="container">
+        <div className="row">
+          <div className="col-12">
 
-      <Index currentNavigationItem={currentNavigationItem} menuItems={menuItems}/>
-    </div>
+            <div className="header-content">
+              <h1 className="header__logo">SongBird</h1>
+              <span className="header__score">Score: {score}</span>
+            </div>
+
+            <NavList currentNavigationItem={currentNavigationItem} menuItems={menuItems}/>
+          </div>
+        </div>
+
+      </div>
+    </header>
   );
 };
 
