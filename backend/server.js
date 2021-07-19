@@ -1,6 +1,6 @@
-const express = require('express');
-const dotenv = require('dotenv');
-const birds = require('./data/birds-data');
+import express from 'express';
+import dotenv from 'dotenv';
+import birds from './data/birds-data.js';
 
 dotenv.config();
 
