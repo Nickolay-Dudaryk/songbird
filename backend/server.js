@@ -1,8 +1,11 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import connectDB from "./config/db.js";
 import birds from './data/birds-data.js';
 
 dotenv.config();
+
+connectDB();
 
 const app = express();
 
