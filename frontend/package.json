@@ -1,6 +1,6 @@
 {
   "name": "songbird",
-  "proxy": "https://www.xeno-canto.org",
+  "proxy": "http://127.0.0.1:5000",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -11,6 +11,7 @@
     "react-scripts": "^3.4.1"
   },
   "devDependencies": {
+    "axios": "^0.21.1",
     "nanoid": "^3.1.23",
     "node-sass": "^4.14.1",
     "sass-loader": "^12.1.0"

@@ -300,5 +300,5 @@ const birdsData = [
       }
     ]
   ];
-  
-  export default birdsData;
+
+module.exports = birdsData;

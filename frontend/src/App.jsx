@@ -1,18 +1,18 @@
 import React, {useState, useEffect} from 'react';
-
+import axios from 'axios';
+// COMPONENTS
 import Header from "./components/organisms/Header";
 import RandomBird from "./components/molecules/RandomBird";
 import Footer from "./components/organisms/Footer";
 import BirdGuessing from "./components/molecules/BirdGuessing";
 import EndGameComponent from "./components/molecules/EndGameCongrats";
-
-import birdsData from "./birds-data";
-
+// SOUNDS
 import wrong from "./assets/audio/wrong.mp3";
-
+// STYLES
 import "./App.scss";
 
 const App = () => {
+  const [birds, setBirds] = useState([]);
   let [score, setScore] = useState(0);
   let [scoreLeftInCurrentAttempt, setScoreLeftInCurrentAttempt] = useState(5);
   let [currentIndexOfBirdsData, setCurrentIndexOfBirdsData] = useState(0);
@@ -31,14 +31,23 @@ const App = () => {
   ];
 
   useEffect(() => {
-    if (currentIndexOfBirdsData === 0 || currentIndexOfBirdsData === 5) {
-      createItemList();
+    const fetchBirds = async () => {
+      const { data } = await axios.get('api/birds');
+
+      setBirds(data)
     }
+
+    fetchBirds();
   }, []);
 
+  useEffect(() => {
+    createItemList();
+  }, [birds]);
+
   const createItemList = () => {
+    console.log(birds)
     setRandomBirdId(Math.floor(Math.random() * 5));
-    setItemList(birdsData[currentIndexOfBirdsData]);
+    setItemList(birds[currentIndexOfBirdsData]);
     setIsAnswerCorrect(false);
     setCurrentBirdId(null);
   };
