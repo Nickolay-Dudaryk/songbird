@@ -45,7 +45,6 @@ const App = () => {
   }, [birds]);
 
   const createItemList = () => {
-    console.log(birds)
     setRandomBirdId(Math.floor(Math.random() * 5));
     setItemList(birds[currentIndexOfBirdsData]);
     setIsAnswerCorrect(false);
