@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from 'react';
-import axios from 'axios';
+import { useDispatch, useSelector } from "react-redux";
+// ACTIONS
+import { listBirds } from "./actions/birdActions";
 // COMPONENTS
 import Header from "./components/organisms/Header";
 import RandomBird from "./components/molecules/RandomBird";
@@ -12,7 +14,6 @@ import wrong from "./assets/audio/wrong.mp3";
 import "./App.scss";
 
 const App = () => {
-  const [birds, setBirds] = useState([]);
   let [score, setScore] = useState(0);
   let [scoreLeftInCurrentAttempt, setScoreLeftInCurrentAttempt] = useState(5);
   let [currentIndexOfBirdsData, setCurrentIndexOfBirdsData] = useState(0);
@@ -20,6 +21,11 @@ const App = () => {
   const [itemList, setItemList] = useState(null);
   const [isAnswerCorrect, setIsAnswerCorrect] = useState(false);
   const [randomBirdId, setRandomBirdId] = useState(null);
+  const birds = [];
+
+  const dispatch = useDispatch();
+
+  const birdList = useSelector(state => state.birdList);
 
   const menuItems = [
     "Разминка",
@@ -31,18 +37,13 @@ const App = () => {
   ];
 
   useEffect(() => {
-    const fetchBirds = async () => {
-      const { data } = await axios.get('api/birds');
-
-      setBirds(data)
-    }
-
-    fetchBirds();
-  }, []);
+    dispatch(listBirds())
+  }, [dispatch]);
 
   useEffect(() => {
     createItemList();
   }, [birds]);
+
 
   const createItemList = () => {
     setRandomBirdId(Math.floor(Math.random() * 5));

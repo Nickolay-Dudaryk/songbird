@@ -562,7 +562,6 @@ const birdsData = [
     audio: 'https://www.xeno-canto.org/sounds/uploaded/YHKQPPJDVP/XC411507-171217_1491%20BF%20Booby%205ft%20IDLP%201230%20mp3%20amp.mp3'
   },
   {
-    id: 33,
     category: 'Морские',
     name: 'Буревестник',
     species: 'Puffinus griseus',
